@@ -166,7 +166,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/04/06/AudioFlinger%E6%A2%B3%E7%90%86/" class="post-title-link" itemprop="url">未命名</a>
+          <a href="/2023/04/06/AudioFlinger%E6%A2%B3%E7%90%86/" class="post-title-link" itemprop="url">AudioTrack与AudioFilnger</a>
         </h2>
 
         <div class="post-meta-container">
@@ -176,15 +176,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2023-04-06 22:38:19" itemprop="dateCreated datePublished" datetime="2023-04-06T22:38:19+08:00">2023-04-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-03-15 11:02:55" itemprop="dateModified" datetime="2023-03-15T11:02:55+08:00">2023-03-15</time>
+      <time title="创建时间：2023-04-06 22:38:19 / 修改时间：22:40:30" itemprop="dateCreated datePublished" datetime="2023-04-06T22:38:19+08:00">2023-04-06</time>
     </span>
 
   
@@ -197,7 +191,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>&#x3D;&#x3D;owner:wanghao&#x3D;&#x3D;</p>
+          <p>​     owner：<strong>WangHao</strong></p>
 <h2 id="Android-Framwork-之-AudioTrack与AudioFlinger"><a href="#Android-Framwork-之-AudioTrack与AudioFlinger" class="headerlink" title="Android Framwork 之 AudioTrack与AudioFlinger"></a>Android Framwork 之 AudioTrack与AudioFlinger</h2><h2 id="1-AudioTrack创建"><a href="#1-AudioTrack创建" class="headerlink" title="1.AudioTrack创建"></a>1.AudioTrack创建</h2><p>​           音频播放声音分为MediaPlayer和AudioTrack两种方案的。MediaPlayer可以播放多种格式的声音文件，例如MP3，WAV，OGG，AAC，MIDI等。然而AudioTrack只能播放PCM数据流。当然两者之间还是有紧密的联系，MediaPlayer在播放音频时，在framework层还是会创建AudioTrack，把解码后的PCM数流传递给AudioTrack，最后由AudioFlinger进行混音，传递音频给硬件播放出来。利用AudioTrack播放只是跳过Mediaplayer的解码部分而已，本文只介绍AudioTrack的创建与AudioFlinger的工作流程。</p>
 <h3 id="1-1AudioTrack传输方式"><a href="#1-1AudioTrack传输方式" class="headerlink" title="1.1AudioTrack传输方式"></a>1.1AudioTrack传输方式</h3><table>
 <thead>
