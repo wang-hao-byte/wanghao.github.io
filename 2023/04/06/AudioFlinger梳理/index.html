@@ -19,25 +19,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"wang-hao-byte.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.15.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="件件有着落，事事有回响">
-<meta property="og:type" content="website">
+    <meta name="description" content="&#x3D;&#x3D;owner:wanghao&#x3D;&#x3D; Android Framwork 之 AudioTrack与AudioFlinger1.AudioTrack创建​           音频播放声音分为MediaPlayer和AudioTrack两种方案的。MediaPlayer可以播放多种格式的声音文件，例如MP3，WAV，OGG，AAC，MIDI等。然而AudioTr">
+<meta property="og:type" content="article">
 <meta property="og:title" content="念念不忘，必有回响">
-<meta property="og:url" content="http://wang-hao-byte.github.io/index.html">
+<meta property="og:url" content="http://wang-hao-byte.github.io/2023/04/06/AudioFlinger%E6%A2%B3%E7%90%86/index.html">
 <meta property="og:site_name" content="念念不忘，必有回响">
-<meta property="og:description" content="件件有着落，事事有回响">
+<meta property="og:description" content="&#x3D;&#x3D;owner:wanghao&#x3D;&#x3D; Android Framwork 之 AudioTrack与AudioFlinger1.AudioTrack创建​           音频播放声音分为MediaPlayer和AudioTrack两种方案的。MediaPlayer可以播放多种格式的声音文件，例如MP3，WAV，OGG，AAC，MIDI等。然而AudioTr">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdn.net/20170301225411811?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvenl1YW55dW4=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="c:%5CUsers%5CWangHao%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1678848818798.png">
+<meta property="article:published_time" content="2023-04-06T14:38:19.144Z">
+<meta property="article:modified_time" content="2023-03-15T03:02:55.241Z">
 <meta property="article:author" content="WangHao">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20170301225411811?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvenl1YW55dW4=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 
-<link rel="canonical" href="http://wang-hao-byte.github.io/">
+<link rel="canonical" href="http://wang-hao-byte.github.io/2023/04/06/AudioFlinger%E6%A2%B3%E7%90%86/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://wang-hao-byte.github.io/2023/04/06/AudioFlinger%E6%A2%B3%E7%90%86/","path":"2023/04/06/AudioFlinger梳理/","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>念念不忘，必有回响</title>
+<title> | 念念不忘，必有回响</title>
   
 
 
@@ -70,7 +75,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">念念不忘，必有回响</h1>
+      <p class="site-title">念念不忘，必有回响</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -96,7 +101,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -109,6 +114,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-Framwork-%E4%B9%8B-AudioTrack%E4%B8%8EAudioFlinger"><span class="nav-number">1.</span> <span class="nav-text">Android Framwork 之 AudioTrack与AudioFlinger</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-AudioTrack%E5%88%9B%E5%BB%BA"><span class="nav-number">2.</span> <span class="nav-text">1.AudioTrack创建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1AudioTrack%E4%BC%A0%E8%BE%93%E6%96%B9%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">1.1AudioTrack传输方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3APP%E5%88%9B%E5%BB%BAAudioTrack%E8%BF%87%E7%A8%8B"><span class="nav-number">2.2.</span> <span class="nav-text">1.3APP创建AudioTrack过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-1%E8%8E%B7%E5%8F%96%E6%9C%80%E5%B0%8F%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="nav-number">2.2.1.</span> <span class="nav-text">1.3.1获取最小缓冲区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-2%E5%88%9B%E5%BB%BAAudioTrack%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.2.2.</span> <span class="nav-text">1.3.2创建AudioTrack对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-3%E5%BC%80%E5%A7%8B%E6%92%AD%E6%94%BE%E5%86%99%E6%95%B0%E6%8D%AE"><span class="nav-number">2.2.3.</span> <span class="nav-text">1.3.3开始播放写数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-4%E5%81%9C%E6%AD%A2%E6%92%AD%E6%94%BE%E9%87%8A%E6%94%BE%E5%86%85%E5%AD%98"><span class="nav-number">2.2.4.</span> <span class="nav-text">1.3.4停止播放释放内存</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4AudioTrack-Framework%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B"><span class="nav-number">2.3.</span> <span class="nav-text">1.4AudioTrack Framework调用流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-1AudioTrack-set"><span class="nav-number">2.3.1.</span> <span class="nav-text">1.4.1AudioTrack::set</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-2AudioTarck-createTrack-l"><span class="nav-number">2.3.2.</span> <span class="nav-text">1.4.2AudioTarck::createTrack_l</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-3AudioFlinger-createTrack"><span class="nav-number">2.3.3.</span> <span class="nav-text">1.4.3AudioFlinger::createTrack</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-4AudioTrack%E5%86%99%E6%95%B0%E6%8D%AE"><span class="nav-number">2.3.4.</span> <span class="nav-text">1.4.4AudioTrack写数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-5AudioFlinger%E8%AF%BB%E6%95%B0%E6%8D%AE"><span class="nav-number">2.3.5.</span> <span class="nav-text">1.4.5AudioFlinger读数据</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-AudioFlinger%E6%A6%82%E8%BF%B0"><span class="nav-number">3.</span> <span class="nav-text">2.AudioFlinger概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1AudioFlinger%E5%90%AF%E5%8A%A8"><span class="nav-number">3.1.</span> <span class="nav-text">2.1AudioFlinger启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2AudioFlinger%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3"><span class="nav-number">3.2.</span> <span class="nav-text">2.2AudioFlinger服务接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3AudioFlinger%E7%9A%84PlaybackThread%E4%B8%8ETrack"><span class="nav-number">3.3.</span> <span class="nav-text">2.3AudioFlinger的PlaybackThread与Track</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1PlaybackThread"><span class="nav-number">3.3.1.</span> <span class="nav-text">2.3.1PlaybackThread</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2Track%E7%AE%A1%E7%90%86"><span class="nav-number">3.3.2.</span> <span class="nav-text">2.3.2Track管理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4AudioFlinger%E5%8A%A0%E8%BD%BDHAL"><span class="nav-number">3.4.</span> <span class="nav-text">2.4AudioFlinger加载HAL</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -138,16 +144,17 @@
 
     </div>
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://wang-hao-byte.github.io/2023/04/06/AudioFlinger%E6%A2%B3%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -161,13 +168,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 念念不忘，必有回响">
+      <meta itemprop="name" content=" | 念念不忘，必有回响">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/04/06/AudioFlinger%E6%A2%B3%E7%90%86/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -197,7 +204,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>&#x3D;&#x3D;owner:wanghao&#x3D;&#x3D;</p>
+        <p>&#x3D;&#x3D;owner:wanghao&#x3D;&#x3D;</p>
 <h2 id="Android-Framwork-之-AudioTrack与AudioFlinger"><a href="#Android-Framwork-之-AudioTrack与AudioFlinger" class="headerlink" title="Android Framwork 之 AudioTrack与AudioFlinger"></a>Android Framwork 之 AudioTrack与AudioFlinger</h2><h2 id="1-AudioTrack创建"><a href="#1-AudioTrack创建" class="headerlink" title="1.AudioTrack创建"></a>1.AudioTrack创建</h2><p>​           音频播放声音分为MediaPlayer和AudioTrack两种方案的。MediaPlayer可以播放多种格式的声音文件，例如MP3，WAV，OGG，AAC，MIDI等。然而AudioTrack只能播放PCM数据流。当然两者之间还是有紧密的联系，MediaPlayer在播放音频时，在framework层还是会创建AudioTrack，把解码后的PCM数流传递给AudioTrack，最后由AudioFlinger进行混音，传递音频给硬件播放出来。利用AudioTrack播放只是跳过Mediaplayer的解码部分而已，本文只介绍AudioTrack的创建与AudioFlinger的工作流程。</p>
 <h3 id="1-1AudioTrack传输方式"><a href="#1-1AudioTrack传输方式" class="headerlink" title="1.1AudioTrack传输方式"></a>1.1AudioTrack传输方式</h3><table>
 <thead>
@@ -445,7 +452,6 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">audio_module_handle_t</span> AudioPolicyService::AudioPolicyClient::<span class="built_in">loadHwModule</span>(<span class="type">const</span> <span class="type">char</span> *name)&#123;</span><br><span class="line">         sp&lt;IAudioFlinger&gt; af = AudioSystem::<span class="built_in">get_audio_flinger</span>();</span><br><span class="line">         ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">audio_module_handle_t</span> <span class="title">AudioFlinger::loadHwModule_l</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *name)</span></span>&#123;</span><br><span class="line">...</span><br><span class="line"><span class="type">int</span> rc = mDevicesFactoryHal-&gt;<span class="built_in">openDevice</span>(name, &amp;dev);</span><br><span class="line">...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">status_t</span> <span class="title">DevicesFactoryHalLocal::openDevice</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *name, sp&lt;DeviceHalInterface&gt; *device)</span></span>&#123;</span><br><span class="line">        ...</span><br><span class="line">        <span class="type">status_t</span> rc = <span class="built_in">load_audio_interface</span>(name, &amp;dev);</span><br><span class="line">        ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">static</span> <span class="type">status_t</span> <span class="title">load_audio_interface</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *if_name, <span class="type">audio_hw_device_t</span> **dev)</span></span>&#123;</span><br><span class="line">       ...</span><br><span class="line">      <span class="comment">/* 这⾥加载的是⾳频动态库，如audio.primary.msm8916.so,如何加载会独⽴体现 */</span></span><br><span class="line">      rc = <span class="built_in">hw_get_module_by_class</span>(AUDIO_HARDWARE_MODULE_ID, if_name, &amp;mod);</span><br><span class="line">      <span class="comment">//加载好的动态库模块必有个open⽅法，调⽤open⽅法打开⾳频设备模块</span></span><br><span class="line">      rc = <span class="built_in">audio_hw_device_open</span>(mod, dev);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
-      
     </div>
 
     
@@ -453,357 +459,18 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://wang-hao-byte.github.io/2023/04/02/AudioFoucs%E7%AE%A1%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="WangHao">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="念念不忘，必有回响">
-      <meta itemprop="description" content="件件有着落，事事有回响">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 念念不忘，必有回响">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/04/02/AudioFoucs%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">AudioFocus管理</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-04-02 23:17:33 / 修改时间：23:18:31" itemprop="dateCreated datePublished" datetime="2023-04-02T23:17:33+08:00">2023-04-02</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>​     owner ：WangHao</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://wang-hao-byte.github.io/2023/04/02/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="WangHao">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="念念不忘，必有回响">
-      <meta itemprop="description" content="件件有着落，事事有回响">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 念念不忘，必有回响">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/04/02/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" class="post-title-link" itemprop="url">Hexo 搭建博客过程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-04-02 19:11:17 / 修改时间：19:18:06" itemprop="dateCreated datePublished" datetime="2023-04-02T19:11:17+08:00">2023-04-02</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>​     owner：&#x3D;&#x3D;WangHao&#x3D;&#x3D;</p>
-<h2 id="1-搭建过程"><a href="#1-搭建过程" class="headerlink" title="1.搭建过程"></a>1.搭建过程</h2><p>#安装Nodejs<br>node -v	#查看node版本<br>npm -v	#查看npm版本<br>npm install -g cnpm –registry&#x3D;<a target="_blank" rel="noopener" href="http://registry.npm.taobao.org/">http://registry.npm.taobao.org</a>	#安装淘宝的cnpm 管理器<br>cnpm -v	#查看cnpm版本<br>cnpm install -g hexo-cli    #安装hexo框架<br>hexo -v	#查看hexo版本<br>mkdir blog	#创建blog目录<br>cd blog	 #进入blog目录<br>sudo hexo init 	#生成博客 初始化博客<br>hexo s	#启动本地博客服务<br><a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a>	#本地访问地址<br>hexo n “我的第一篇文章” #创建新的文章<br>#返回blog目录<br>hexo clean #清理<br>hexo g #生成<br>#Github创建一个新的仓库 YourGithubName.github.iocnpm install –save hexo-deployer-git</p>
-<p> #在blog目录下安装git部署插件配置_config.yml </p>
-<pre><code># Deployment
-## Docs: https://hexo.io/docs/deployment.html
-deploy:
-  type: git
-  repo: https://github.com/YourGithubName/YourGithubName.github.io.git
-  branch: master
-</code></pre>
-<p>hexo d	#部署到Github仓库里<br><a target="_blank" rel="noopener" href="https://yourgithubname.github.io/">https://YourGithubName.github.io/</a>  #访问这个地址可以查看博客</p>
-<p> git clone <a target="_blank" rel="noopener" href="https://github.com/litten/hexo-theme-yilia.git">https://github.com/litten/hexo-theme-yilia.git</a> themes&#x2F;yilia  #下载yilia主题到本地</p>
-<p>#修改hexo根目录下的 _config.yml 文件 ： theme: yilia</p>
-<p>hexo c	#清理一下<br>hexo g	#生成<br>hexo d	#部署到远程Github仓库<br><a target="_blank" rel="noopener" href="https://yourgithubname.github.io/">https://YourGithubName.github.io/</a>  #查看博客</p>
-<h2 id="2-常见问题"><a href="#2-常见问题" class="headerlink" title="2.常见问题"></a>2.常见问题</h2><h3 id="问题描述：error：spawn-failed…"><a href="#问题描述：error：spawn-failed…" class="headerlink" title="问题描述：error：spawn failed…"></a>问题描述：error：spawn failed…</h3><p>先是出现错误：<br>error：spawn failed…<br>然后经过一些博客的操作会出现以下问题：<br>fatal: cannot lock ref ‘HEAD’: unable to resolve reference HEAD: Invalid argument error: src refspec<br>或者：<br>error: src refspec HEAD does not match any.等等<br>总结一下：<br>问题大多是因为git 进行push或者hexo d的时候改变了一些.deploy_git文件下的内容。</p>
-<h3 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h3><ol>
-<li>删除<code>.deploy_git</code>文件夹;</li>
-<li>输入<code>git config --global core.autocrlf false</code></li>
-<li>然后，依次执行：<br><code>hexo clean</code><br><code>hexo g</code><br><code>hexo d</code></li>
-</ol>
-<h2 id="图床设置"><a href="#图床设置" class="headerlink" title="图床设置"></a>图床设置</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/350598351">GitHub+picGo+CDN搭建免费图床 </a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://wang-hao-byte.github.io/2023/04/02/AudioEffect%E6%9E%B6%E6%9E%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="WangHao">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="念念不忘，必有回响">
-      <meta itemprop="description" content="件件有着落，事事有回响">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 念念不忘，必有回响">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/04/02/AudioEffect%E6%9E%B6%E6%9E%84/" class="post-title-link" itemprop="url">AudioEffect架构</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-04-02 16:00:32 / 修改时间：19:00:58" itemprop="dateCreated datePublished" datetime="2023-04-02T16:00:32+08:00">2023-04-02</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>​     owner：WangHao</p>
-<h2 id="Android官方API"><a href="#Android官方API" class="headerlink" title="Android官方API"></a>Android官方API</h2><p><a target="_blank" rel="noopener" href="https://developer.android.google.cn/reference/android/media/audiofx/AudioEffect.html">https://developer.android.google.cn/reference/android/media/audiofx/AudioEffect.html</a></p>
-<p>1.AudioEffect不可以直接使用，而需要实现其方法的子类，如Equlizer.java、PresetReverb.java等。 2,每种音效都对应有一个UUID，具体请查阅AudioEffect.class中间的说明</p>
-<h2 id="framework调用过程"><a href="#framework调用过程" class="headerlink" title="framework调用过程"></a>framework调用过程</h2><p>从Java到audioFlinger的调用过程</p>
-<p><img src="https://raw.githubusercontent.com/wang-hao-byte/FigureBed/master/1680422537759.png"></p>
-<p>代码路径：</p>
-<p>&#x2F;frameworks&#x2F;base&#x2F;media&#x2F;java&#x2F;android&#x2F;media&#x2F;audiofx&#x2F;</p>
-<ol>
-<li>构造PresetReverb对象</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">PresetReverb</span><span class="params">(<span class="type">int</span> priority, <span class="type">int</span> audioSession)</span></span><br><span class="line"><span class="keyword">throws</span> IllegalArgumentException, UnsupportedOperationException, RuntimeException &#123;</span><br><span class="line">    <span class="built_in">super</span>(EFFECT_TYPE_PRESET_REVERB, EFFECT_TYPE_NULL, priority, audioSession);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里只是添加了对应音效的UUID,没有做其他事情，后面调用了基类的构造函数。其中EFFECT<em>TYPE</em>PRESET<em>REVERB和EFFECT</em>TYPE_NULL的定义在frameworks&#x2F;base&#x2F;media&#x2F;java&#x2F;android&#x2F;media&#x2F;audiofx&#x2F;AudioEffect.java</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * UUID for preset reverberation effect</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">UUID</span> <span class="variable">EFFECT_TYPE_PRESET_REVERB</span> <span class="operator">=</span> UUID</span><br><span class="line">        .fromString(<span class="string">&quot;47382d60-ddd8-11db-bf3a-0002a5d5c51b&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Null effect UUID. See &#123;<span class="doctag">@link</span> AudioEffect(UUID, UUID, int, int)&#125; for use.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@hide</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@TestApi</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">UUID</span> <span class="variable">EFFECT_TYPE_NULL</span> <span class="operator">=</span> UUID</span><br><span class="line">        .fromString(<span class="string">&quot;ec7178ec-e5e1-4432-a3f4-4657e6795210&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>audioEffect使用了JNI，并把构造工作抛给了native层的native_setup</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">private</span> <span class="title function_">AudioEffect</span><span class="params">(UUID type, UUID uuid, <span class="type">int</span> priority,</span></span><br><span class="line"><span class="params">            <span class="type">int</span> audioSession, <span class="meta">@Nullable</span> AudioDeviceAttributes device, <span class="type">boolean</span> probe)</span></span><br><span class="line">            <span class="keyword">throws</span> IllegalArgumentException, UnsupportedOperationException,</span><br><span class="line">            RuntimeException &#123;</span><br><span class="line">        <span class="type">int</span>[] id = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">1</span>];</span><br><span class="line">        Descriptor[] desc = <span class="keyword">new</span> <span class="title class_">Descriptor</span>[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">deviceType</span> <span class="operator">=</span> AudioSystem.DEVICE_NONE;</span><br><span class="line">        <span class="type">String</span> <span class="variable">deviceAddress</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="keyword">if</span> (device != <span class="literal">null</span>) &#123;</span><br><span class="line">            deviceType = AudioDeviceInfo.convertDeviceTypeToInternalDevice(device.getType());</span><br><span class="line">            deviceAddress = device.getAddress();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// native initialization</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">initResult</span> <span class="operator">=</span> native_setup(<span class="keyword">new</span> <span class="title class_">WeakReference</span>&lt;AudioEffect&gt;(<span class="built_in">this</span>),</span><br><span class="line">                type.toString(), uuid.toString(), priority, audioSession,</span><br><span class="line">                deviceType, deviceAddress,</span><br><span class="line">                id, desc, ActivityThread.currentOpPackageName(), probe);</span><br><span class="line">    native_setup（android_media_AudioEffect_native_setup）中调用了AudioEffect(C++)的构造代码。——framework/base/media/jni/audioeffect/android_media_AudioEffect.cpp</span><br><span class="line"><span class="keyword">static</span> jint</span><br><span class="line"><span class="title function_">android_media_AudioEffect_native_setup</span><span class="params">(JNIEnv *env, jobject thiz, jobject weak_this,</span></span><br><span class="line"><span class="params">        jstring type, jstring uuid, jint priority, jint sessionId,</span></span><br><span class="line"><span class="params">        jint deviceType, jstring deviceAddress,</span></span><br><span class="line"><span class="params">        jintArray jId, jobjectArray javadesc, jstring opPackageName, jboolean probe)</span></span><br><span class="line">&#123;</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">     lpAudioEffect-&gt;set(typeStr,</span><br><span class="line">                       uuidStr,</span><br><span class="line">                       priority,</span><br><span class="line">                       effectCallback,</span><br><span class="line">                       &amp;lpJniStorage-&gt;mCallbackData,</span><br><span class="line">                       (audio_session_t) sessionId,</span><br><span class="line">                       AUDIO_IO_HANDLE_NONE,</span><br><span class="line">                       device,</span><br><span class="line">                       probe);</span><br><span class="line">    lStatus = AudioEffectJni::translateNativeErrorToJava(lpAudioEffect-&gt;initCheck());</span><br><span class="line">    <span class="keyword">if</span> (lStatus != AUDIOEFFECT_SUCCESS &amp;&amp; lStatus != AUDIOEFFECT_ERROR_ALREADY_EXISTS) &#123;</span><br><span class="line">        ALOGE(<span class="string">&quot;AudioEffect initCheck failed %d&quot;</span>, lStatus);</span><br><span class="line">        goto setup_failure;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>【native层】AudioEffect(C++)的构造代码调用了set()，set()中进一步调用了audioFlinger-&gt;createEffect()来创建音效。——frameworks&#x2F;av&#x2F;media&#x2F;libmedia&#x2F;AudioEffect.cpp</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">status_t</span> <span class="title">AudioEffect::set</span><span class="params">(<span class="type">const</span> <span class="type">effect_uuid_t</span> *type,</span></span></span><br><span class="line"><span class="params"><span class="function">                <span class="type">const</span> <span class="type">effect_uuid_t</span> *uuid,</span></span></span><br><span class="line"><span class="params"><span class="function">                <span class="type">int32_t</span> priority,</span></span></span><br><span class="line"><span class="params"><span class="function">                <span class="type">effect_callback_t</span> cbf,</span></span></span><br><span class="line"><span class="params"><span class="function">                <span class="type">void</span>* user,</span></span></span><br><span class="line"><span class="params"><span class="function">                <span class="type">audio_session_t</span> sessionId,</span></span></span><br><span class="line"><span class="params"><span class="function">                <span class="type">audio_io_handle_t</span> io,</span></span></span><br><span class="line"><span class="params"><span class="function">                <span class="type">const</span> AudioDeviceTypeAddr&amp; device,</span></span></span><br><span class="line"><span class="params"><span class="function">                <span class="type">bool</span> probe)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    sp&lt;IEffect&gt; iEffect;</span><br><span class="line">    sp&lt;IMemory&gt; cblk;</span><br><span class="line">    <span class="type">int</span> enabled;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">ALOGV</span>(<span class="string">&quot;set %p mUserData: %p uuid: %p timeLow %08x&quot;</span>, <span class="keyword">this</span>, user, type, type ? type-&gt;timeLow : <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (mIEffect != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">ALOGW</span>(<span class="string">&quot;Effect already in use&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> INVALID_OPERATION;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (sessionId == AUDIO_SESSION_DEVICE &amp;&amp; io != AUDIO_IO_HANDLE_NONE) &#123;</span><br><span class="line">        <span class="built_in">ALOGW</span>(<span class="string">&quot;IO handle should not be specified for device effect&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> BAD_VALUE;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">const</span> sp&lt;IAudioFlinger&gt;&amp; audioFlinger = AudioSystem::<span class="built_in">get_audio_flinger</span>();</span><br><span class="line">    <span class="keyword">if</span> (audioFlinger == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">ALOGE</span>(<span class="string">&quot;set(): Could not get audioflinger&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> NO_INIT;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (type == <span class="literal">NULL</span> &amp;&amp; uuid == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">ALOGW</span>(<span class="string">&quot;Must specify at least type or uuid&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> BAD_VALUE;</span><br><span class="line">    &#125;</span><br><span class="line">    mProbe = probe;</span><br><span class="line">    mPriority = priority;</span><br><span class="line">    mCbf = cbf;</span><br><span class="line">    mUserData = user;</span><br><span class="line">    mSessionId = sessionId;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(&amp;mDescriptor, <span class="number">0</span>, <span class="built_in">sizeof</span>(<span class="type">effect_descriptor_t</span>));</span><br><span class="line">    mDescriptor.type = *(type != <span class="literal">NULL</span> ? type : EFFECT_UUID_NULL);</span><br><span class="line">    mDescriptor.uuid = *(uuid != <span class="literal">NULL</span> ? uuid : EFFECT_UUID_NULL);</span><br><span class="line"></span><br><span class="line">    mIEffectClient = <span class="keyword">new</span> <span class="built_in">EffectClient</span>(<span class="keyword">this</span>);</span><br><span class="line">    mClientPid = IPCThreadState::<span class="built_in">self</span>()-&gt;<span class="built_in">getCallingPid</span>();</span><br><span class="line">    mClientUid = IPCThreadState::<span class="built_in">self</span>()-&gt;<span class="built_in">getCallingUid</span>();</span><br><span class="line"></span><br><span class="line">    iEffect = audioFlinger-&gt;<span class="built_in">createEffect</span>((<span class="type">effect_descriptor_t</span> *)&amp;mDescriptor,</span><br><span class="line">            mIEffectClient, priority, io, mSessionId, device, mOpPackageName, mClientPid,</span><br><span class="line">            probe, &amp;mStatus, &amp;mId, &amp;enabled);</span><br></pre></td></tr></table></figure>
-
-<p>AudioFlinger会创建一个Effect实例，创建一个新的音效对象。</p>
-<p>native层   audioFlinger service端调用thread-&gt;createEffect_l在对应的音频线程创建音效。——frameworks\av\services\audioflinger\AudioFlinger.cpp</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">sp&lt;IEffect&gt; <span class="title">AudioFlinger::createEffect</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">        <span class="type">effect_descriptor_t</span> *pDesc,</span></span></span><br><span class="line"><span class="params"><span class="function">        <span class="type">const</span> sp&lt;IEffectClient&gt;&amp; effectClient,</span></span></span><br><span class="line"><span class="params"><span class="function">        <span class="type">int32_t</span> priority,</span></span></span><br><span class="line"><span class="params"><span class="function">        <span class="type">audio_io_handle_t</span> io,</span></span></span><br><span class="line"><span class="params"><span class="function">        <span class="type">audio_session_t</span> sessionId,</span></span></span><br><span class="line"><span class="params"><span class="function">        <span class="type">const</span> AudioDeviceTypeAddr&amp; device,</span></span></span><br><span class="line"><span class="params"><span class="function">        <span class="type">const</span> String16&amp; opPackageName,</span></span></span><br><span class="line"><span class="params"><span class="function">        <span class="type">pid_t</span> pid,</span></span></span><br><span class="line"><span class="params"><span class="function">        <span class="type">bool</span> probe,</span></span></span><br><span class="line"><span class="params"><span class="function">        <span class="type">status_t</span> *status,</span></span></span><br><span class="line"><span class="params"><span class="function">        <span class="type">int</span> *id,</span></span></span><br><span class="line"><span class="params"><span class="function">        <span class="type">int</span> *enabled)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  ...</span><br><span class="line">      handle = mDeviceEffectManager.<span class="built_in">createEffect_l</span>(</span><br><span class="line">                    &amp;desc, device, client, effectClient, mPatchPanel.<span class="built_in">patches_l</span>(),</span><br><span class="line">                    enabled, &amp;lStatus, probe);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>【native层】createEffect_l中创建了效果链，并把new EffectModule(this,chain, desc, id, sessionId)加入效果链。——frameworks&#x2F;av&#x2F;services&#x2F;audioflinger&#x2F;Threads.cpp</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">sp&lt;AudioFlinger::EffectHandle&gt; AudioFlinger::ThreadBase::<span class="built_in">createEffect_l</span>(</span><br><span class="line">        <span class="type">const</span> sp&lt;AudioFlinger::Client&gt;&amp; client,</span><br><span class="line">        <span class="type">const</span> sp&lt;IEffectClient&gt;&amp; effectClient,</span><br><span class="line">        <span class="type">int32_t</span> priority,</span><br><span class="line">        <span class="type">int</span> sessionId,</span><br><span class="line">        <span class="type">effect_descriptor_t</span> *desc,</span><br><span class="line">        <span class="type">int</span> *enabled,</span><br><span class="line">        <span class="type">status_t</span> *status</span><br><span class="line">        )</span><br><span class="line">&#123;</span><br><span class="line">    sp&lt;EffectModule&gt; effect;</span><br><span class="line">    sp&lt;EffectHandle&gt; handle;</span><br><span class="line">    <span class="type">status_t</span> lStatus;</span><br><span class="line">    sp&lt;EffectChain&gt; chain;</span><br><span class="line">    <span class="type">bool</span> chainCreated = <span class="literal">false</span>;</span><br><span class="line">    <span class="type">bool</span> effectCreated = <span class="literal">false</span>;</span><br><span class="line">    <span class="type">bool</span> effectRegistered = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    ……</span><br><span class="line"></span><br><span class="line">    &#123; <span class="comment">// scope for mLock</span></span><br><span class="line">        Mutex::Autolock _l(mLock);</span><br><span class="line">        <span class="comment">// 获取效果链</span></span><br><span class="line">        <span class="comment">// check for existing effect chain with the requested audio session</span></span><br><span class="line">        chain = <span class="built_in">getEffectChain_l</span>(sessionId);</span><br><span class="line">        <span class="keyword">if</span> (chain == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// create a new chain for this session</span></span><br><span class="line">            <span class="built_in">ALOGV</span>(<span class="string">&quot;createEffect_l() new effect chain for session %d&quot;</span>, sessionId);</span><br><span class="line">            chain = <span class="keyword">new</span> <span class="built_in">EffectChain</span>(<span class="keyword">this</span>, sessionId);</span><br><span class="line">            <span class="built_in">addEffectChain_l</span>(chain);</span><br><span class="line">            chain-&gt;<span class="built_in">setStrategy</span>(<span class="built_in">getStrategyForSession_l</span>(sessionId));</span><br><span class="line">            chainCreated = <span class="literal">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            effect = chain-&gt;<span class="built_in">getEffectFromDesc_l</span>(desc);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (effect == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="type">int</span> id = mAudioFlinger-&gt;<span class="built_in">nextUniqueId</span>();</span><br><span class="line">            <span class="comment">// Check CPU and memory usage</span></span><br><span class="line">            lStatus = AudioSystem::<span class="built_in">registerEffect</span>(desc, mId, chain-&gt;<span class="built_in">strategy</span>(), sessionId, id);</span><br><span class="line">            <span class="keyword">if</span> (lStatus != NO_ERROR) &#123;</span><br><span class="line">                <span class="keyword">goto</span> Exit;</span><br><span class="line">            &#125;</span><br><span class="line">            effectRegistered = <span class="literal">true</span>;</span><br><span class="line">            <span class="comment">// 创建效果模块</span></span><br><span class="line">            <span class="comment">// create a new effect module if none present in the chain</span></span><br><span class="line">            effect = <span class="keyword">new</span> <span class="built_in">EffectModule</span>(<span class="keyword">this</span>, chain, desc, id, sessionId);</span><br><span class="line">            lStatus = effect-&gt;<span class="built_in">status</span>();</span><br><span class="line">            <span class="keyword">if</span> (lStatus != NO_ERROR) &#123;</span><br><span class="line">                <span class="keyword">goto</span> Exit;</span><br><span class="line">            &#125;</span><br><span class="line">            effect-&gt;<span class="built_in">setOffloaded</span>(mType == OFFLOAD, mId);</span><br><span class="line"></span><br><span class="line">            lStatus = chain-&gt;<span class="built_in">addEffect_l</span>(effect);</span><br><span class="line">            <span class="keyword">if</span> (lStatus != NO_ERROR) &#123;</span><br><span class="line">                <span class="keyword">goto</span> Exit;</span><br><span class="line">            &#125;</span><br><span class="line">            effectCreated = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">            effect-&gt;<span class="built_in">setDevice</span>(mOutDevice);</span><br><span class="line">            effect-&gt;<span class="built_in">setDevice</span>(mInDevice);</span><br><span class="line">            effect-&gt;<span class="built_in">setMode</span>(mAudioFlinger-&gt;<span class="built_in">getMode</span>());</span><br><span class="line">            effect-&gt;<span class="built_in">setAudioSource</span>(mAudioSource);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// create effect handle and connect it to effect module</span></span><br><span class="line">        handle = <span class="keyword">new</span> <span class="built_in">EffectHandle</span>(effect, client, effectClient, priority);</span><br><span class="line">        lStatus = effect-&gt;<span class="built_in">addHandle</span>(handle.<span class="built_in">get</span>());</span><br><span class="line">        <span class="keyword">if</span> (enabled != <span class="literal">NULL</span>) &#123;</span><br><span class="line">            *enabled = (<span class="type">int</span>)effect-&gt;<span class="built_in">isEnabled</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>【native层】EffectModule的构造函数中调用了EffectFactory的EffectCreate方法来创建音效实例。——frameworks&#x2F;av&#x2F;services&#x2F;audioflinger&#x2F;Effects.cpp</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">AudioFlinger::EffectModule::<span class="built_in">EffectModule</span>(ThreadBase *thread,</span><br><span class="line">                                        <span class="type">const</span> wp&lt;AudioFlinger::EffectChain&gt;&amp; chain,</span><br><span class="line">                                        <span class="type">effect_descriptor_t</span> *desc,</span><br><span class="line">                                        <span class="type">int</span> id,</span><br><span class="line">                                        <span class="type">int</span> sessionId)</span><br><span class="line">    : <span class="built_in">mPinned</span>(sessionId &gt; AUDIO_SESSION_OUTPUT_MIX),</span><br><span class="line">      <span class="built_in">mThread</span>(thread), <span class="built_in">mChain</span>(chain), <span class="built_in">mId</span>(id), <span class="built_in">mSessionId</span>(sessionId),</span><br><span class="line">      <span class="built_in">mDescriptor</span>(*desc),</span><br><span class="line">      <span class="comment">// mConfig is set by configure() and not used before then</span></span><br><span class="line">      <span class="built_in">mEffectInterface</span>(<span class="literal">NULL</span>),</span><br><span class="line">      <span class="built_in">mStatus</span>(NO_INIT), <span class="built_in">mState</span>(IDLE),</span><br><span class="line">      <span class="comment">// mMaxDisableWaitCnt is set by configure() and not used before then</span></span><br><span class="line">      <span class="comment">// mDisableWaitCnt is set by process() and updateState() and not used before then</span></span><br><span class="line">      <span class="built_in">mSuspended</span>(<span class="literal">false</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">ALOGV</span>(<span class="string">&quot;Constructor %p&quot;</span>, <span class="keyword">this</span>);</span><br><span class="line">    <span class="type">int</span> lStatus;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// create effect engine from effect factory</span></span><br><span class="line">    mStatus = <span class="built_in">EffectCreate</span>(&amp;desc-&gt;uuid, sessionId, thread-&gt;<span class="built_in">id</span>(), &amp;mEffectInterface);</span><br><span class="line">    ……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>【native层】EffectCreate中枚举并创建了具体的效果类。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">EffectCreate</span><span class="params">(<span class="type">const</span> <span class="type">effect_uuid_t</span> *uuid, <span class="type">int32_t</span> sessionId, <span class="type">int32_t</span> ioId, <span class="type">effect_handle_t</span> *pHandle)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">list_elem_t</span> *e = gLibraryList;</span><br><span class="line">    <span class="type">lib_entry_t</span> *l = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="type">effect_descriptor_t</span> *d = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="type">effect_handle_t</span> itfe;</span><br><span class="line">    <span class="type">effect_entry_t</span> *fx;</span><br><span class="line">    <span class="type">int</span> found = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> ret;</span><br><span class="line">……</span><br><span class="line">    ret = <span class="built_in">init</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (ret &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">ALOGW</span>(<span class="string">&quot;EffectCreate() init error: %d&quot;</span>, ret);</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">pthread_mutex_lock</span>(&amp;gLibLock);</span><br><span class="line"></span><br><span class="line">    ret = <span class="built_in">findEffect</span>(<span class="literal">NULL</span>, uuid, &amp;l, &amp;d);</span><br><span class="line">    <span class="keyword">if</span> (ret &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="comment">// Sub effects are not associated with the library-&gt;effects,</span></span><br><span class="line">        <span class="comment">// so, findEffect will fail. Search for the effect in gSubEffectList.</span></span><br><span class="line">        ret = <span class="built_in">findSubEffect</span>(uuid, &amp;l, &amp;d);</span><br><span class="line">        <span class="keyword">if</span> (ret &lt; <span class="number">0</span> ) &#123;</span><br><span class="line">            <span class="keyword">goto</span> exit;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// create effect in library</span></span><br><span class="line">    ret = l-&gt;desc-&gt;<span class="built_in">create_effect</span>(uuid, sessionId, ioId, &amp;itfe);</span><br><span class="line">    <span class="keyword">if</span> (ret != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">ALOGW</span>(<span class="string">&quot;EffectCreate() library %s: could not create fx %s, error %d&quot;</span>, l-&gt;name, d-&gt;name, ret);</span><br><span class="line">        <span class="keyword">goto</span> exit;</span><br><span class="line">    &#125;</span><br><span class="line">    ……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://flowus.cn/preview/eb444b3a-6028-4bba-9357-a4537d821ad8" alt="image.png"></p>
-<p><strong>音效库加载</strong></p>
-<p>音效库在EffectFactory.c的 init函数中加载，主要做两件事：</p>
-<p>1、loadLibrarie，加载xml中的所有库文件</p>
-<p>2、loadEffects,加载xml中的节点下配置的所有音效。</p>
-<p>加载完成后会保存到gLibraryList指向的全局链表中，链表中每一个实体(lib<em>entry</em>t)代表一个音效库)，lib<em>entry</em>t有一个成员属性effects,它也是一个链表，表示该音效库中所有的音效。在创建音效时，根据传入的uuid从该链表中查找对应的音效描述符desc,然后执行其creat_effect()。</p>
-<h2 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h2><ol>
-<li>在APP创建一个API,直接调用</li>
-</ol>
-<p>Q:APP位置，</p>
-<ol>
-<li>create_effect的时候做逻辑判断，加log</li>
-</ol>
-<p>&#x2F;home&#x2F;zenchen&#x2F;projects&#x2F;titan-r-mainline&#x2F;vendor&#x2F;harman&#x2F;packages&#x2F;harmanaudioframework&#x2F;effect&#x2F;testapp</p>
-<p>整体需求，编译代码，刷机push。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://wang-hao-byte.github.io/2023/04/02/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="WangHao">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="念念不忘，必有回响">
-      <meta itemprop="description" content="件件有着落，事事有回响">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 念念不忘，必有回响">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/04/02/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-04-02 14:23:23 / 修改时间：15:38:23" itemprop="dateCreated datePublished" datetime="2023-04-02T14:23:23+08:00">2023-04-02</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>​     owner：WangHao</p>
-<p>​     我是一名从事智能座舱开发的工程师，专注于音频领域，虽然工作不到两年，但我热爱写作，喜欢记录自己的学习笔记。最近我发现Hexo可以用来搭建个人博客，相比CSDN的代码编辑环境，它更加方便实用。因此，我决定在这里记录我的学习文档，分享我的技术心得。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/04/02/AudioFoucs%E7%AE%A1%E7%90%86/" rel="prev" title="AudioFocus管理">
+                  <i class="fa fa-chevron-left"></i> AudioFocus管理
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
 </div>
@@ -812,6 +479,8 @@ deploy:
 
 
 
+
+    <div class="comments gitalk-container"></div>
 </div>
   </main>
 
@@ -866,7 +535,7 @@ deploy:
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":null,"repo":null,"client_id":null,"client_secret":null,"admin_user":null,"distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"d1546d731a9f30cc80127d57142a482b"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":null,"repo":null,"client_id":null,"client_secret":null,"admin_user":null,"distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"336b902f0775698c44a070e71cfb80c3"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
